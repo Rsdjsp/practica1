@@ -430,5 +430,4 @@ const eliminarObjeto = (key) => {
   });
 };
 
-// BORRAR
 
