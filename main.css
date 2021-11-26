@@ -1,0 +1,96 @@
+body {
+  color: black;
+  font-family: sans-serif;
+}
+
+.texto {
+  margin-top: 20px;
+  font-size: 10px;
+}
+
+.reloj {
+  background: linear-gradient(#111, #666);
+  border: 2px solid black;
+  display: inline-flex;
+  border-radius: 2px;
+}
+
+.reloj div {
+  color: white;
+  padding: 5px 9px;
+  font-size: 20px;
+  font-family: monospace;
+}
+
+.texturas {
+  margin: 10px;
+  border: 1px solid black;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.texturas div {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  margin: 6px;
+  user-select: all;
+}
+
+.texturas div:active {
+  opacity: 0.55;
+}
+
+.textura1 {
+  background: url(/textura1.jpg);
+  background-size: cover;
+}
+.textura2 {
+  background: url(/textura2.jpg);
+  background-size: cover;
+}
+.textura3 {
+  background: url(/textura3.jpg);
+  background-size: cover;
+}
+
+.zona {
+  width: 100%;
+  background: #ddd;
+  height: 500px;
+  background-size: cover;
+  object-fit: cover;
+  border: 3px dashed grey;
+}
+
+.resultado {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#newImg {
+  max-width: 48%;
+  margin: 2px 6px;
+}
+.zona-arrastre {
+  max-width: 100%;
+  background: #ddd;
+  background-size: cover;
+  object-fit: cover;
+  border: 3px dashed grey;
+  margin: auto;
+  margin-top: 30px;
+  text-align: center;
+  padding: 60px 20px;
+  font-weight: bolder;
+  color: #666;
+}
+
+#img-crg{
+    position: relative;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    top:-30px;
+}
