@@ -429,3 +429,15 @@ const eliminarObjeto = (key) => {
     console.log("objeto eliminado correctamente");
   });
 };
+
+// BORRAR
+
+const eliminarObjeto2 = (key) => {
+  const db = IDBRequest.result;
+  const IDBtransaction = db.transaction("nombres", "readwrite");
+  const objectStore = IDBtransaction.objectStore("nombres");
+  objectStore.delete(key);
+  IDBtransaction.addEventListener("complete", () => {
+    console.log("objeto eliminado correctamente");
+  });
+};
