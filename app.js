@@ -415,7 +415,7 @@ const modificarObjeto = (key, Object) => {
   const db = IDBRequest.result;
   const IDBtransaction = db.transaction("nombres", "readwrite");
   const objectStore = IDBtransaction.objectStore("nombres");
-  objectStore.put(Object,key);
+  objectStore.put(Object, key);
   IDBtransaction.addEventListener("complete", () => {
     console.log("objeto agregado correctamente");
   });
@@ -430,5 +430,38 @@ const eliminarObjeto = (key) => {
   });
 };
 
-//yes yes
+//_________________________________________matchMedia
+// matchMedia()
+// evento onchange
+
+// const mq = matchMedia("(max-width: 500px)");
+// const caja = document.querySelector(".caja");
+
+// mq.addEventListener("onchange", () => {
+//   if (mq.matches) {
+//     caja.classList.replace("caja", ".responsive-caja");
+//   } else if (mq.className == "responsive-caja") {
+//     caja.classList.replace("responsive-caja", ".caja");
+//   }
+// });
+
+// __________________________________Intersection Observer
+// intersection Observer()
+
+const cajas = document.querySelectorAll(".caja");
+
+const verifyVisibility = (entries) => {
+  for (let enttry of entries) {
+    if (enttry.isItersecting == true) {
+      console.log("se esta viendo la caja3");
+    }
+  }
+};
+
+const Observer = new IntersectionObserver(verifyVisibility);
+
+for (const caja of cajas) {
+  Observer.observe(caja);
+}
+
 
