@@ -155,6 +155,84 @@ body {
   color: #ddd;
 }
 
-.caja span,.caja2 span,.caja3 span,.caja4 span {
+.caja span,
+.caja2 span,
+.caja3 span,
+.caja4 span {
+  margin: auto;
+}
+
+.publicacion {
+  text-align: justify;
+  margin: 20px;
+  opacity: 0;
+  animation: aparecer 1s forwards 0.5s;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.publicacion p {
+  padding: 10px 20px;
+  border-left: 2px solid #48e;
+}
+.publicacion h3 {
+  border-bottom: 2px solid #48e;
+  color: #48e;
+  font-size: 2rem;
+}
+
+.comentarios {
+  display: flex;
+}
+.comentarios input {
+  padding: 6px 10px;
+  border: none;
+  background: #48e;
+  color: #ddd;
+  outline: none;
+}
+.comentarios .comentario {
+  margin-left: 20px;
+  flex-grow: 1;
+}
+
+.comentario::placeholder {
+  color: #ddd;
+  font-weight: bolder;
+}
+.comentarios .enviar {
+  min-width: 50px;
+  margin-right: 20px;
+  background: #ddd;
+  color: #111;
+  font-weight: bold;
+  padding: 1px;
+  border: 1px solid #48e;
+}
+
+.workers {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.loadResults{
+  margin: auto;
+}
+
+.workerInput{
+  max-width: 70%;
+  margin: auto;
+}
+
+.buttonWorker{
+  max-width: 50%;
   margin: auto;
 }

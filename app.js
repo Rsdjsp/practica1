@@ -464,4 +464,126 @@ for (const caja of cajas) {
   Observer.observe(caja);
 }
 
+// _____________________________________________-Lazy Load
+
+const publicaciones = document.querySelector(".publicacion");
+let contador = 0;
+
+const cargarmasPubliaciones = (entry) => {
+  if (entry[0].isItersecting) {
+    console.log(entry);
+    cargarPubliaciones(4);
+  }
+};
+
+const Observer2 = new IntersectionObserver(cargarmasPubliaciones);
+
+const createPublication = (name, content) => {
+  const container = document.createElement("DIV");
+  const comentarios = document.createElement("DIV");
+  const contenido = document.createElement("P");
+  const h3 = document.createElement("H3");
+  const btnComentario = document.createElement("INPUT");
+  const btnEnviar = document.createElement("INPUT");
+
+  container.classList.add("publicacion");
+  comentarios.classList.add("comentarios");
+  btnEnviar.classList.add("enviar");
+  btnEnviar.type = "submit";
+  btnEnviar.value = "Enviar";
+  btnComentario.classList.add("comentario");
+  btnComentario.setAttribute("placeholder", "Introduce un comentario");
+  h3.textContent = name;
+  contenido.textContent = content;
+
+  comentarios.appendChild(btnComentario);
+  comentarios.appendChild(btnEnviar);
+  container.appendChild(h3);
+  container.appendChild(contenido);
+  container.appendChild(comentarios);
+
+  return container;
+};
+
+const cargarPubliaciones = async (num) => {
+  const request = await fetch("publish.txt");
+  const conten = await request.json();
+  const arr = conten.array;
+  const documentFrag = document.createDocumentFragment();
+  for (let i = 0; i < num; i++) {
+    if (arr[contador] != undefined) {
+      const newPubliacion = createPublication(
+        arr[contador].name,
+        arr[contador].content
+      );
+      documentFrag.appendChild(newPubliacion);
+      contador++;
+      if (i == num - 1) {
+        Observer2.observe(newPubliacion);
+      } else {
+        let noMore = document.createElement("H3");
+        noMore.textContent = " No hay mas publiacaciones";
+        publicaciones.appendChild(documentFrag);
+      }
+    }
+  }
+  publicaciones.appendChild(documentFrag);
+};
+
+// cargarPubliaciones(5);
+
+//_________________________________________Visibility change
+
+// addEventListener("visibilitychange", (e) => {
+//   if (e.target.visibilityState == "visible") {
+//     document.write("por que abandonaste la pagina");
+//   } else {
+//     alert("volviste");
+//   }
+// });
+
+// ________________________________________Notification
+
+if (!("Notification" in window)) {
+  console.log("las notificaciones no estan permiotidas");
+}
+
+Notification.requestPermission(() => {
+  if (Notification.permission == "granted") {
+    // new Notification("Hey yujuu");
+  }
+});
+
+// ________________________________________________Web Workers
+// Archivo que se ejecuta en segundo plano
+// Dedicated Worker
+// Service Worker
+// Abstract Worker
+// solamente se puede acceder al worker si se encuentra en el mismo puerto de origen
+
+const worker2 = new Worker("worker.js");
+document
+  .querySelector(".buttonWorker")
+  .addEventListener("click", () => EjecutarBucle());
+worker2.addEventListener("message", () => {
+  worker2.terminate();
+});
+const EjecutarBucle = () => {
+  worker2.postMessage("que onda todo bien");
+  worker2.terminate();
+};
+
+const cargarData = async (div) => {
+  const req = await fetch("publish.txt");
+  const res = await req.json();
+  const arr = res;
+  document.querySelector(div).innerHTML = arr;
+};
+
+//__________________________________________Objeto Navigator
+
+// console.log("")
+
+
+
 
