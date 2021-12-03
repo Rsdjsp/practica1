@@ -582,7 +582,133 @@ const cargarData = async (div) => {
 
 //__________________________________________Objeto Navigator
 
-// console.log("")
+// _________________________________________________Memoizer
+
+//
+
+const hacerAlgo = (num) => {
+  const a = 20;
+  const b = 12;
+  let c = 0;
+
+  for (let i = num - 1; i >= 0; i--) {
+    for (let j = i - 1; j >= 0; j--) {
+      c += a * b;
+    }
+  }
+  return c;
+};
+
+let cache = [];
+
+const memorizer = (func) => {
+  return (e) => {
+    const ind = e.toString();
+    if (cache[ind] == undefined) {
+      cache[ind] = func(e);
+    }
+    return cache[ind];
+  };
+};
+
+// sin memoizer
+
+// console.log("funcion sin memoizer");
+// const date = new Date();
+// hacerAlgo(60000);
+// console.log(new Date() - date);
+
+// const date2 = new Date();
+// hacerAlgo(60000);
+// console.log(new Date() - date2);
+
+// const date3 = new Date();
+// hacerAlgo(60000);
+// console.log(new Date() - date3);
+
+// const date4 = new Date();
+// hacerAlgo(60000);
+// console.log(new Date() - date4);
+
+// const date5 = new Date();
+// hacerAlgo(60000);
+// console.log(new Date() - date5);
+
+// //con memoizer
+// console.log("funcion con memoizer")
+
+// const memo = memorizer(hacerAlgo)
+
+// const date6 = new Date();
+// memo(60000);
+// console.log(new Date() - date6);
+
+// const date7 = new Date();
+// memo(60000);
+// console.log(new Date() - date7);
+
+// const date8 = new Date();
+// memo(60000);
+// console.log(new Date() - date8);
+
+// const date9 = new Date();
+// memo(60000);
+// console.log(new Date() - date9);
+
+// const date10 = new Date();
+// memo(60000);
+// console.log(new Date() - date10);
+
+//______________________________________________Cache
+
+caches.open("archivos estaticos").then((cache) => {
+  cache.keys().then((res) => {
+    console.log(res);
+  });
+});
+
+//__________________________________________-Service Workers
+//
+
+// navigator.serviceWorker.register("sw.js");
+
+//______________________________________________Cookies
+
+// clave=valor;atr;atr;atr
+
+document.cookie = "user=dalto";
+
+const newFechaUTC = (dias) => {
+  let fecha = new Date();
+  fecha.setTime(fecha.getTime() + dias * 1000 * 60 * 60 * 24);
+  return fecha.toUTCString();
+};
+
+const createCookies = (name, dias) => {
+  const exipresDate = newFechaUTC(dias);
+  document.cookie = `${name};expires=${exipresDate}`;
+};
+
+createCookies("usuario=dalto", 4);
+
+const obtenerCookie = (cookieName) => {
+  let cookies = document.cookie;
+  cookies = cookies.split(";");
+  for (let i = 0; cookies.length > i; i++) {
+    let cookie = cookies[i].trim();
+    if (cookie.startsWith(cookieName)) {
+      return cookie.split("=")[1];
+    } else {
+
+    }
+  }
+  return "no hay cookies con ese nombre";
+};
+
+
+//____________________________________________CANVAS
+
+
 
 
 
